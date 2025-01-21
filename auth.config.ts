@@ -17,7 +17,7 @@ export default {
 
     async session({ session, token }) {
       if (token?.user) {
-        session.user.id = token.userId;
+        session.user.id = token.userId as string;
       }
       return session;
     },
