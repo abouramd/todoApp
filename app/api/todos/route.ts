@@ -1,13 +1,10 @@
 import { NextResponse } from "next/server"
 import { PrismaClient } from "@prisma/client"
-import {auth} from "@/auth"
-// import { getServerSession } from "next-auth/next"
-// import { authOptions } from "../auth/[...nextauth]/route"
+import { auth } from "@/auth"
 
 export const prisma = new PrismaClient()
 
 export async function GET() {
-  // const session = await getServerSession(authOptions)
   const session = await auth();
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
@@ -21,7 +18,6 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  // const session = await getServerSession(authOptions)
   const session = await auth();
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
@@ -35,7 +31,6 @@ export async function POST(request: Request) {
 }
 
 export async function PUT(request: Request) {
-  // const session = await getServerSession(authOptions)
   const session = await auth();
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
@@ -50,7 +45,6 @@ export async function PUT(request: Request) {
 }
 
 export async function DELETE(request: Request) {
-  // const session = await getServerSession(authOptions)
   const session = await auth();
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })

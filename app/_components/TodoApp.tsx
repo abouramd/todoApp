@@ -9,6 +9,7 @@ import { Trash2 } from "lucide-react"
 import Link from "next/link"
 import { signOut } from "@/auth"
 import logOut from "../_actions/logOut"
+import UserProfile from "./UserProfile"
 
 interface Todo {
   id: string
@@ -16,7 +17,7 @@ interface Todo {
   completed: boolean
 }
 
-export default function TodoApp() {
+export default function TodoApp({ name, avatarUrl }: { name: string, avatarUrl: string }) {
   const [todos, setTodos] = useState<Todo[]>([])
   const [newTodo, setNewTodo] = useState("")
 
@@ -72,6 +73,12 @@ export default function TodoApp() {
         <h1 className="text-2xl font-bold">Todo App</h1>
         <Button variant="outline" onClick={logOut}>Sign Out</Button>
       </div>
+      <div className="mb-4">
+        <UserProfile
+          name={name}
+          avatarUrl={avatarUrl} // A sample avatar URL
+        />
+      </div>
       <form onSubmit={addTodo} className="flex mb-4">
         <Input
           type="text"
@@ -83,7 +90,29 @@ export default function TodoApp() {
         <Button type="submit">Add</Button>
       </form>
       <ul>
-        {JSON.stringify(todos)}
+        {todos instanceof Array && todos.map((todo) => (
+          <li key={todo.id} className="flex items-center justify-between py-2 border-b">
+            <div className="flex items-center w-[90%]">
+              <Checkbox
+                id={todo.id}
+                checked={todo.completed}
+                onCheckedChange={() => toggleTodo(todo.id)}
+                className="mr-2"
+              />
+              <label htmlFor={todo.id} className={`w-[90%] break-words ${todo.completed ? "line-through text-gray-500" : ""}`}>
+                {todo.title}
+              </label>
+            </div>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => deleteTodo(todo.id)}
+              className="text-red-500 hover:text-red-700"
+            >
+              <Trash2 className="h-4 w-4" />
+            </Button>
+          </li>
+        ))}
       </ul>
     </div>
   )

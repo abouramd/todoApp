@@ -12,6 +12,9 @@ export default async function Home() {
     )
   }
 
-  return <TodoApp />
+  return (<TodoApp
+    name={session.user.name}
+    avatarUrl={session.user.image} // A sample avatar URL
+  />)
 }
 
