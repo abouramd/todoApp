@@ -11,13 +11,12 @@ export default {
     async jwt({ token, user }) {
       if (user) {
         token.userId = user.id;
-        token.username = user.username;
       }
       return token;
     },
 
     async session({ session, token }) {
-      if (token) {
+      if (token?.user) {
         session.user.id = token.userId;
       }
       return session;
