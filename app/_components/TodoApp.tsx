@@ -1,13 +1,10 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useSession } from "next-auth/react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Trash2 } from "lucide-react"
-import Link from "next/link"
-import { signOut } from "@/auth"
 import logOut from "../_actions/logOut"
 import UserProfile from "./UserProfile"
 
