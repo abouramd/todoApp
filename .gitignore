@@ -42,6 +42,5 @@ next-env.d.ts
 
 # prisma
 prisma/dev*
-prisma/migrations
 
 !.env.example
