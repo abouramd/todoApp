@@ -23,9 +23,7 @@ export default function TodoApp({ name, avatarUrl }: { name: string, avatarUrl: 
   }, [])
 
   const fetchTodos = async () => {
-    const response = await fetch("/api/todos", {
-      credentials: "include",
-    });
+    const response = await fetch("/api/todos");
     const data = await response.json()
     setTodos(data)
   }
