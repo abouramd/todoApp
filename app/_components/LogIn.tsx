@@ -1,18 +1,29 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
-import { Github, Mail } from "lucide-react";
+import { Github, Chrome } from "lucide-react";
 import { logInGithub, logInGoogle } from '../_actions/LogIn'
-import { Card, CardHeader } from "@/components/ui/card";
+import { GridPatternCard, GridPatternCardBody } from "@/components/ui/card-with-grid-ellipsis-pattern";
 
 export default function LogIn() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <Card className="p-6">
-        <CardHeader>
-          <h1 className="text-4xl font-bold mb-6">Welcome to Todo App</h1>
-        </CardHeader>
-        <Button variant="outline" className="w-full mb-2" onClick={logInGithub}><Github /> Sign In</Button>
-        <Button variant="outline" className="w-full mb-2" onClick={logInGoogle}><Mail /> Sign In</Button>
-      </Card>
-    </div>
+    <main className="flex flex-col items-center justify-center min-h-screen py-12 px-4 bg-gray-50 dark:bg-gray-900">
+      <GridPatternCard className="w-full max-w-md mx-auto">
+        <GridPatternCardBody>
+          <div className="text-2xl text-center">
+            <h1 className="text-3xl font-bold mb-4 text-center">Welcome to Todo App</h1>
+          </div>
+          <div className="flex flex-col space-y-2">
+            <Button className="w-full" onClick={logInGithub}><Github /> Sign In With Github</Button>
+            <Button className="w-full" onClick={logInGoogle}><Chrome /> Sign In With Google</Button>
+          </div>
+        </GridPatternCardBody>
+      </GridPatternCard>
+    </main>
   );
 }
+
+
+
+
+
